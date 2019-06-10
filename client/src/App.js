@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
+import { Route } from 'react-router-dom';
 
 export default class App extends Component {
   constructor() {
@@ -21,8 +22,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <Route exact path="/" component={ MovieList }/>
+        <Route path="/movies/:id" render={ (props) => <Movie {...props} addToSavedList={this.addToSavedList}/> }/>
         <SavedList list={this.state.savedList} />
-        <div>Replace this Div with your Routes</div>
       </div>
     );
   }
