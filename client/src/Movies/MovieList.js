@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Card, CardBody,
+  CardTitle, CardSubtitle, CardLink } from 'reactstrap';
 
 export default class MovieList extends Component {
   constructor(props) {
@@ -24,7 +27,14 @@ export default class MovieList extends Component {
     return (
       <div className="movie-list">
         {this.state.movies.map(movie => (
-          <MovieDetails key={movie.id} movie={movie} />
+          // <MovieDetails key={movie.id} movie={movie} />
+          <Card key={movie.id}>
+            <CardBody>
+              <CardTitle> { movie.title } </CardTitle>
+              <CardSubtitle> { movie.director } </CardSubtitle>
+              <CardLink tag={Link} to={`/movies/${movie.id}`}> More </CardLink>
+            </CardBody>
+          </Card>
         ))}
       </div>
     );
